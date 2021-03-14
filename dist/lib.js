@@ -67,14 +67,15 @@ exports.Webserver = Webserver;
 class ConfigHandler {
     constructor(path = "../config/") {
         if (process.argv.includes("dev")) {
-            this.configPath = path_1.default.join(path, "config_dev.json");
+            this.configPath = "config_dev.json";
             this.devMode = true;
             console.log("Starting in dev mode!");
         }
         else {
-            this.configPath = path_1.default.join(path, "config_pro.json");
+            this.configPath = "config_pro.json";
             this.devMode = false;
         }
+        this.configPath = path_1.default.join(process.cwd(), path, this.configPath);
     }
     load() {
         const config = require(this.configPath);

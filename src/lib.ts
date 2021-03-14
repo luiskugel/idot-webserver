@@ -48,7 +48,7 @@ export class Webserver {
     this.app.use(express.json());
     this.app.use(morgan(this.morgan));
   }
-  addRouter(route: string, router: any, method = "all"): void {
+  addRouter(route: string, router: Handler | Router, method = "all"): void {
     switch (method) {
       case "post":
         this.app.post(route, router);
@@ -81,13 +81,14 @@ export class ConfigHandler {
   devMode: boolean;
   constructor(path = "../config/") {
     if (process.argv.includes("dev")) {
-      this.configPath = pathLib.join(path, "config_dev.json");
+      this.configPath = "config_dev.json";
       this.devMode = true;
       console.log("Starting in dev mode!");
     } else {
-      this.configPath = pathLib.join(path, "config_pro.json");
+      this.configPath = "config_pro.json";
       this.devMode = false;
     }
+    this.configPath = pathLib.join(process.cwd(), path, this.configPath);
   }
   load() {
     const config = require(this.configPath);
