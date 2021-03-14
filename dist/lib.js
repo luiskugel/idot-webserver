@@ -36,7 +36,7 @@ class Webserver {
         this.app.use(express_1.default.json());
         this.app.use(morgan_1.default(this.morgan));
     }
-    addRouter(route, router, method = "all") {
+    addRouter(route, method = "all", router) {
         switch (method) {
             case "post":
                 this.app.post(route, router);

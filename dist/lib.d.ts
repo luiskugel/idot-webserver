@@ -8,7 +8,7 @@ export declare class Webserver {
     listen(): void;
     _setupCors(): void;
     _setupHandlers(): void;
-    addRouter(route: string, router: Handler | Router, method?: string): void;
+    addRouter(route: string, method: string | undefined, router: Handler | Router): void;
     addMiddleware(handler: Handler): void;
 }
 export declare class ConfigHandler {
