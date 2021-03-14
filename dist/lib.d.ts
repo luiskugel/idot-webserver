@@ -1,4 +1,4 @@
-import { Application, Router, Handler } from "express";
+import { Application, Handler } from "express";
 export declare class Webserver {
     cors: string;
     morgan: string;
@@ -8,7 +8,7 @@ export declare class Webserver {
     listen(): void;
     _setupCors(): void;
     _setupHandlers(): void;
-    addRouter(route: string, router: Router, method?: string): void;
+    addRouter(route: string, router: any, method?: string): void;
     addMiddleware(handler: Handler): void;
 }
 export declare class ConfigHandler {
