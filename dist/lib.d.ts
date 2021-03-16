@@ -5,6 +5,7 @@ export declare class Webserver {
     app: Application;
     port: number;
     constructor(port?: number, cors?: string, morgan?: string);
+    initialize(): void;
     listen(): void;
     _setupCors(): void;
     _setupHandlers(): void;

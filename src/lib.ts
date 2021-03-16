@@ -20,9 +20,11 @@ export class Webserver {
     this.port = port;
     this.app = express();
   }
-  listen() {
+  initialize() {
     this._setupCors();
     this._setupHandlers();
+  }
+  listen() {
     this.app.listen(this.port);
     console.log("server listening on port: " + this.port);
   }
