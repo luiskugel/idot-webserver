@@ -33,7 +33,10 @@ export class Webserver {
   _setupCors(): void {
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       res.header("Access-Control-Allow-Origin", this.cors);
-      res.header("Access-Control-Allow-Credentials", this.credentials);
+      res.header(
+        "Access-Control-Allow-Credentials",
+        this.credentials.toString()
+      );
       res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"

@@ -8,11 +8,12 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
 class Webserver {
-    constructor(port = 8080, cors = "*", morgan = "dev") {
+    constructor(port = 8080, cors = "*", morgan = "dev", credentials = true) {
         this.cors = cors;
         this.morgan = morgan;
         this.port = port;
         this.app = express_1.default();
+        this.credentials = credentials;
     }
     initialize() {
         this._setupCors();
@@ -25,6 +26,7 @@ class Webserver {
     _setupCors() {
         this.app.use((req, res, next) => {
             res.header("Access-Control-Allow-Origin", this.cors);
+            res.header("Access-Control-Allow-Credentials", this.credentials.toString());
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
             if (req.method === "OPTIONS") {
                 res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");

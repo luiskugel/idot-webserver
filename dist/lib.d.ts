@@ -4,7 +4,8 @@ export declare class Webserver {
     morgan: string;
     app: Application;
     port: number;
-    constructor(port?: number, cors?: string, morgan?: string);
+    credentials: boolean;
+    constructor(port?: number, cors?: string, morgan?: string, credentials?: boolean);
     initialize(): void;
     listen(): void;
     _setupCors(): void;
