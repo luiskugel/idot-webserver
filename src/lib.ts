@@ -14,11 +14,13 @@ export class Webserver {
   morgan: string;
   app: Application;
   port: number;
-  constructor(port = 8080, cors = "*", morgan = "dev") {
+  credentials: boolean;
+  constructor(port = 8080, cors = "*", morgan = "dev", credentials = true) {
     this.cors = cors;
     this.morgan = morgan;
     this.port = port;
     this.app = express();
+    this.credentials = credentials;
   }
   initialize() {
     this._setupCors();
@@ -31,6 +33,7 @@ export class Webserver {
   _setupCors(): void {
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       res.header("Access-Control-Allow-Origin", this.cors);
+      res.header("Access-Control-Allow-Credentials", this.credentials);
       res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
